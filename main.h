@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -62,3 +63,7 @@ int (*get_function(char s))(va_list args);
 
 #endif /* MAIN_H */
 
+=======
+hello do you see me.
+i do can you see me?
+>>>>>>> d7871f5b73c137d8887ee83096a7ed8e459b104b
