@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -11,7 +10,7 @@
 #include <string.h>
 
 /**
- * struc func_type - type structure
+ * struct func_type - type structure
  * @p: pointer to the argument
  * @f: pointer-function associated with the argument
 */
