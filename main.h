@@ -26,7 +26,7 @@ int _putchar(char c);
 int print_dec(va_list args);
 int print_char(va_list args);
 int print_str(va_list args);
-int (*get_funct(char s))(va_list args);
+int (*get_func(const char *format))(va_list);
 int print_pct(va_list args);
 
 #endif
