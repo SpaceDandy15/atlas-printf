@@ -5,7 +5,7 @@
  * @format: Format specifier character
  * Return: Pointer to function matching the specifier
  */
-int (*get_func(char s))(va_list args)
+int (*get_func(const char *format))(va_list args)
 {
     func_t p[] = {
         {'c', print_char},
