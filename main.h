@@ -11,14 +11,14 @@
 
 /**
  * struct func_type - type structure
- * @p: pointer to the argument
+ * @t: format specifier string
  * @f: pointer-function associated with the argument
-*/
+ */
 typedef struct func_type
 {
-	char *t;
-	int (*f)(va_list);
-}func_t;
+    char *t;
+    int (*f)(va_list);
+} func_t;
 
 /* Function Prototypes */
 int _printf(const char *format, ...);
@@ -29,4 +29,5 @@ int print_str(va_list args);
 int (*get_func(const char *format))(va_list);
 int print_pct(va_list args);
 
-#endif
+#endif /* MAIN_H */
+
