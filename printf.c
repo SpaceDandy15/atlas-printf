@@ -1,51 +1,42 @@
 #include "main.h"
-#include <stdarg.h>
 
 /**
- * _pritnf - pritns to output according to format
- * @format: character string
- *
- * Return: number of characetrs printed
-*/
-
-int _pritnf(const char *format, ...)
+ * _printf - Produces output according to a format.
+ * @format: Character string containing format specifiers.
+ * Return: The number of characters printed.
+ */
+int _printf(const char *format, ...)
 {
-	int i = 0, m = 0;
-	int (*f) (va_list);
-	va_list args;
+    int count = 0;
+    int i;  /* Declare the loop variable outside the loop */
+    va_list args;
 
-	va_start(args, format);
-	if (format == NULL || !format[i + 1])
-	return (-1);
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			if (format[i + 1])
-			{
-				if (format[i + 1] != 'c' && format[i +1] != 's'
-				&& format[i + 1] != '%' && format[i + 1] != 'd'
-				&& format[ i + 1] != 'i')
-				{
-					m += _putchar(format[i]);
-					m += _putchar(format[i+ 1]);
-					i++;
-				}
-				else
-				{
-					f = get_func(&format[i +1]);
-					m += f(args);
-					i++;
-				}
-			}
-		}
-		else
-		{
-			_putchar(format[i]);
-			m++;
-		}
-		i++;
-	}
-	va_end(args);
-	return (m);
+    va_start(args, format);
+
+    for (i = 0; format && format[i]; i++)
+    {
+        if (format[i] == '%' && format[i + 1])
+        {
+            int (*func)(va_list) = get_func(&format[i + 1]); /* Use &format[i + 1] */
+            if (func)
+            {
+                count += func(args);
+            }
+            else
+            {
+                _putchar(format[i]);
+                count++;
+            }
+            i++;  /* Skip the format specifier character */
+        }
+        else
+        {
+            _putchar(format[i]);
+            count++;
+        }
+    }
+
+    va_end(args);
+    return (count);
 }
+
