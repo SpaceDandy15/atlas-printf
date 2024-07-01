@@ -1,6 +1,4 @@
-/* printf.c */
 #include "main.h"
-#include <stdarg.h>  /* Include header for variable arguments */
 
 /**
  * _printf - Custom printf function implementation
@@ -11,43 +9,31 @@ int _printf(const char *format, ...)
 {
     va_list args;
     int count = 0;
-    /* Additional variables and logic as needed */
+    func_t p[] = {
+        {'c', print_char},
+        {'s', print_str},
+        {'%', print_pct},
+        {'d', print_dec},
+        {'i', print_dec},
+        {0, NULL}
+    };
 
     va_start(args, format);
 
-    /* Example logic to handle format string parsing */
     while (*format)
     {
         if (*format == '%')
         {
-            /* Handle format specifiers */
-            switch (*(format + 1))
-            {
-                case 'c':
-                    /* Handle character specifier */
-                    /* Example: putchar(va_arg(args, int)); */
-                    count++;
-                    break;
-                case 's':
-                    /* Handle string specifier */
-                    /* Example: fputs(va_arg(args, char *), stdout); */
-                    count += 5; /* Adjust according to actual output */
-                    break;
-                case '%':
-                    /* Handle percent specifier */
-                    /* Example: putchar('%'); */
-                    count++;
-                    break;
-                default:
-                    /* Handle unknown specifier or other logic */
-                    break;
-            }
             format++;
+            for (int i = 0; p[i].t; i++)
+            {
+                if (*format == p[i].t)
+                    count += p[i].f(args);
+            }
         }
         else
         {
-            /* Handle regular characters */
-            /* Example: putchar(*format); */
+            putchar(*format);
             count++;
         }
         format++;
@@ -56,7 +42,4 @@ int _printf(const char *format, ...)
     va_end(args);
     return count;
 }
-
-/* Additional functions related to printf if needed */
-
 
