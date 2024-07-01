@@ -8,7 +8,7 @@
  * Return: number of characetrs printed
 */
 
-int _pritnf(conts char *format, ...)
+int _pritnf(const char *format, ...)
 {
 	int i = 0, m = 0;
 	int (*f) (va_list);
@@ -24,7 +24,7 @@ int _pritnf(conts char *format, ...)
 			if (format[i + 1])
 			{
 				if (format[i + 1] != 'c' && format[i +1] != 's'
-				&& format[i + 1] != '%' && fomrat[i + 1] != 'd'
+				&& format[i + 1] != '%' && format[i + 1] != 'd'
 				&& format[ i + 1] != 'i')
 				{
 					m += _putchar(format[i]);
