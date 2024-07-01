@@ -1,29 +1,27 @@
 #include "main.h"
 
 /**
- * get_funct - check for valid specifier
- * @format: a character to check
- * Return: a pointer to the function
-*/
-
-int (*get_func(const char *format))(va_list)
+ * get_func - Get the function corresponding to the format specifier
+ * @format: Format specifier character
+ * Return: Pointer to function matching the specifier
+ */
+int (*get_func(char s))(va_list args)
 {
-	int i;
-	func_t p[] = {
-		{"c", print_char},
-		{"s", print_str},
-		{"%", print_pct},
-		{"d", print_dec},
-		{"i", print_dec},
-		{NULL, NULL}
-	};
+    func_t p[] = {
+        {'c', print_char},
+        {'s', print_str},
+        {'%', print_pct},
+        {'d', print_dec},
+        {'i', print_dec},
+        {0, NULL}
+    };
 
-	for ( i = 0; p[i].t; i++)
-	{
-		if (*format == *(p[i].t))
-		{
-			return(p[i].f);
-		}
-	}
-	return (NULL);
+    for (int i = 0; p[i].t; i++)
+    {
+        if (s == p[i].t)
+            return p[i].f;
+    }
+
+    return NULL;
 }
+
