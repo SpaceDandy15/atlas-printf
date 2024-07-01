@@ -16,7 +16,7 @@
 */
 typedef struct func_type
 {
-	char *p;
+	char *t;
 	int (*f)(va_list);
 }func_t;
 
